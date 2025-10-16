@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel del Administrador</title>
+  <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+  <!-- Encabezado fijo -->
+  <div class="navbar">
+    <div class="logo">ADMIN PANEL</div>
+    <div class="right-menu">
+      <a href="#" onclick="history.back()">⬅ Volver</a>
+    </div>
+  </div>
+
+  <!-- Contenedor principal del panel -->
+  <div class="panel-admin">
+    <div class="admin-info">
+      <div class="admin-icon">
+        <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="Admin">
+      </div>
+      <div class="admin-name">NOMBRE DEL ADMIN</div>
+    </div>
+
+    <div class="panel-botones">
+      <button class="panel-btn" onclick="location.href='inventario.html'">
+        <span>INVENTARIO</span>
+        <img src="https://cdn-icons-png.flaticon.com/512/992/992703.png" alt="Inventario">
+      </button>
+
+      <button class="panel-btn" onclick="location.href='reportes.html'">
+        <span>REPORTES</span>
+        <img src="https://cdn-icons-png.flaticon.com/512/1828/1828859.png" alt="Reportes">
+      </button>
+
+      <button class="panel-btn" onclick="location.href='gestion-productos.html'">
+        <span>GESTIÓN DE PRODUCTOS</span>
+        <img src="https://cdn-icons-png.flaticon.com/512/2921/2921222.png" alt="Gestión">
+      </button>
+    </div>
+  </div>
+</body>
+</html>

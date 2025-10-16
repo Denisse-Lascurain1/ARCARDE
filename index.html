@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+   <link rel= "icon" type="image/x-icon" href="img/juego2.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Arcade Shop</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  
+
+</head>
+<body>
+
+  <header class="navbar">
+    <div class="menu-btn" id="menu-btn">☰</div>
+    <h1 class="logo">ARCADE SHOP</h1>
+    <div class="right-menu">
+      <a href="#" class="cart">🛒</a>
+      <a href="registro.html" class="link">Registrarse</a>
+      <a href="login.html" class="link">Iniciar sesión</a>
+    </div>
+  </header>
+
+  <nav class="sidebar" id="sidebar">
+    <a href="#">Inicio</a>
+    <li><a href="mouse.html">Mouse</a></li>
+    <a href="teclados.html">Teclados</a>
+    <a href="sillas.html">Sillas</a>
+  </nav>
+
+  <!-- Aquí va el nuevo slider -->
+  <div class="slider">
+    <div class="slider-slides">
+      <div class="slide active" style="background-image: url('img/img1.jpg');"></div>
+      <div class="slide" style="background-image: url('img/img2.jpg');"></div>
+      <div class="slide" style="background-image: url('img/img3.jpg');"></div>
+    </div>
+    <button class="prev-btn">‹</button>
+    <button class="next-btn">›</button>
+    <div class="slider-dots">
+      <span class="dot active" data-index="0"></span>
+      <span class="dot" data-index="1"></span>
+      <span class="dot" data-index="2"></span>
+    </div>
+  </div>
+ <a href="admin.html" class="admin">ADMIN</a>
+  
+
+  <script>
+    // Toggle del menú lateral
+    const menuBtn = document.getElementById('menu-btn');
+    const sidebar = document.getElementById('sidebar');
+    menuBtn.addEventListener('click', () => {
+      sidebar.classList.toggle('active');
+    });
+  </script>
+
+  <!-- Script del slider -->
+  <script>
+    const slides = document.querySelectorAll('.slide');
+    const prevBtn = document.querySelector('.prev-btn');
+    const nextBtn = document.querySelector('.next-btn');
+    const dots = document.querySelectorAll('.dot');
+    let current = 0;
+    const max = slides.length;
+
+    function showSlide(index) {
+      slides.forEach((s, i) => {
+        s.classList.toggle('active', i === index);
+      });
+      dots.forEach((d, i) => {
+        d.classList.toggle('active', i === index);
+      });
+      current = index;
+    }
+
+    prevBtn.addEventListener('click', () => {
+      let nextIndex = current - 1;
+      if (nextIndex < 0) nextIndex = max - 1;
+      showSlide(nextIndex);
+    });
+
+    nextBtn.addEventListener('click', () => {
+      let nextIndex = current + 1;
+      if (nextIndex >= max) nextIndex = 0;
+      showSlide(nextIndex);
+    });
+
+    dots.forEach(dot => {
+      dot.addEventListener('click', () => {
+        const idx = parseInt(dot.getAttribute('data-index'));
+        showSlide(idx);
+      });
+    });
+
+    // Autoplay
+    let autoplayInterval = setInterval(() => {
+      let nextIndex = current + 1;
+      if (nextIndex >= max) nextIndex = 0;
+      showSlide(nextIndex);
+    }, 5000);
+
+    const sliderEl = document.querySelector('.slider');
+    sliderEl.addEventListener('mouseenter', () => {
+      clearInterval(autoplayInterval);
+    });
+    sliderEl.addEventListener('mouseleave', () => {
+      autoplayInterval = setInterval(() => {
+        let nextIndex = current + 1;
+        if (nextIndex >= max) nextIndex = 0;
+        showSlide(nextIndex);
+      }, 5000);
+    });
+  </script>
+
+</body>
+</html>
+

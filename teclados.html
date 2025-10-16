@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arcade Shop | Mouse</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+    <header class="navbar">
+        <div class="menu-btn" id="menu-btn">☰</div>
+        <h1 class="logo">ARCADE SHOP</h1>
+        <div class="right-menu">
+            <a href="#" class="cart">🛒</a> 
+            <a href="registro.html" class="link">Registrarse</a>
+            <a href="login.html" class="link">Iniciar sesión</a>
+        </div>
+    </header>
+
+    <nav class="sidebar" id="sidebar">
+        <a href="index.html">Inicio</a>
+        <li><a href="mouse.html">Mouse</a></li>
+        <a href="teclados.html">Teclados</a>
+        <a href="sillas.html">Sillas</a>
+    </nav>
+    
+    <section class="productos">
+        <h2 class="categoria">Teclados</h2>
+        <div class="contenedor-productos">
+            
+            <div class="card-producto">
+                <img src="img/teclado1.jpg" alt=" Teclado RAZER	Ornata V3 X">
+                <div class="info-producto">
+                    <p>RAZER	Ornata V3 X	Gamer, Conexión alámbrica, retroiluminado</p>
+                    <p class="precio">$974.00</p>
+                    <div class="estrellas">⭐⭐⭐</div>
+                </div>
+                <button class="btn-carrito" onclick="agregarCarrito(this)">🛒</button>
+            </div>
+
+            <div class="card-producto">
+                <img src="img/teclado2.jpeg" alt="teclado HYPERX	Alloy Origins Core	Gamer">
+                <div class="info-producto">
+                    <p>HYPERX	Alloy Origins Core	Gamer, Mecánico, Conexión alámbrica</p>
+                    <p class="precio">$2,789.00</p>
+                    <div class="estrellas">⭐⭐⭐</div>
+                </div>
+                <button class="btn-carrito" onclick="agregarCarrito(this)">🛒</button>
+            </div>
+            <div class="card-producto">
+                <img src="img/ted.png" alt="">
+                <div class="info-producto">
+                    <p></p>
+                    <p class="precio">$</p>
+                    <div class="estrellas">⭐⭐⭐</div>
+                </div>
+                <button class="btn-carrito" onclick="agregarCarrito(this)">🛒</button>
+            </div>
+            <div class="card-producto">
+                <img src="img/.png" alt="">
+                <div class="info-producto">
+                    <p></p>
+                    <p class="precio">$</p>
+                    <div class="estrellas">⭐⭐⭐</div>
+                </div>
+                <button class="btn-carrito" onclick="agregarCarrito(this)">🛒</button>
+            </div>
+            <div class="card-producto">
+                <img src="img/.png" alt="">
+                <div class="info-producto">
+                    <p></p>
+                    <p class="precio">$</p>
+                    <div class="estrellas">⭐⭐⭐</div>
+                </div>
+                <button class="btn-carrito" onclick="agregarCarrito(this)">🛒</button>
+            </div>
+            <div class="card-producto">
+                <img src="img/.png" alt="">
+                <div class="info-producto">
+                    <p></p>
+                    <p class="precio">$</p>
+                    <div class="estrellas">⭐⭐⭐</div>
+                </div>
+                <button class="btn-carrito" onclick="agregarCarrito(this)">🛒</button>
+            </div>
+            <div class="card-producto">
+                <img src="img/.png" alt="">
+                <div class="info-producto">
+                    <p></p>
+                    <p class="precio">$</p>
+                    <div class="estrellas">⭐⭐⭐</div>
+                </div>
+                <button class="btn-carrito" onclick="agregarCarrito(this)">🛒</button>
+            </div>
+            <div class="card-producto">
+                <img src="img/.png" alt="">
+                <div class="info-producto">
+                    <p></p>
+                    <p class="precio">$</p>
+                    <div class="estrellas">⭐⭐⭐</div>
+                </div>
+                <button class="btn-carrito" onclick="agregarCarrito(this)">🛒</button>
+            </div>
+            <div class="card-producto">
+                <img src="img/teclado.jpeg" alt="teclado RAZER	Ornata V3 X">
+                <div class="info-producto">
+                    <p></p>
+                    <p class="precio">$</p>
+                    <div class="estrellas">⭐⭐⭐</div>
+                </div>
+                <button class="btn-carrito" onclick="agregarCarrito(this)">🛒</button>
+            </div>
+            <div class="card-producto">
+                <img src="img/.png" alt="">
+                <div class="info-producto">
+                    <p></p>
+                    <p class="precio">$</p>
+                    <div class="estrellas">⭐⭐⭐</div>
+                </div>
+                <button class="btn-carrito" onclick="agregarCarrito(this)">🛒</button>
+            </div>
+            <div class="card-producto">
+                <img src="img/.png" alt="">
+                <div class="info-producto">
+                    <p></p>
+                    <p class="precio">$</p>
+                    <div class="estrellas">⭐⭐⭐</div>
+                </div>
+                <button class="btn-carrito" onclick="agregarCarrito(this)">🛒</button>
+
+        </div>
+    </section>
+
+    <script>
+        // Toggle del menú lateral
+        const menuBtn = document.getElementById('menu-btn');
+        const sidebar = document.getElementById('sidebar');
+        menuBtn.addEventListener('click', () => {
+            sidebar.classList.toggle('active');
+        });
+
+        // Cambia el ícono del carrito por una palomita (función que ya tenías)
+        function agregarCarrito(boton) {
+            boton.innerText = "✔️";
+            boton.style.color = "green";
+            boton.disabled = true; // evita que lo vuelvan a presionar
+        }
+    </script>
+
+</body>
+</html>
