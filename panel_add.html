@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Administrador</title>
+    <link rel="stylesheet" href="style_panel_add.css">
+
+</head>
+<body>
+
+    <h1>Panel de Administrador</h1>
+    <p>Bienvenido, <span id="nombreUsuario">Administrador</span></p>
+
+    <h2>Menú</h2>
+    <ul>
+        <li><a href="#" onclick="mostrarSeccion('productos')">Gestión de Productos</a></li>
+        <li><a href="#" onclick="mostrarSeccion('inventario')">Inventario</a></li>
+        <li><a href="#" onclick="mostrarSeccion('usuarios')">Usuarios</a></li>
+    </ul>
+
+    <hr>
+
+    <div id="productos" class="seccion">
+        <h3>Gestión de Productos</h3>
+        <p>Aquí puedes agregar, editar o eliminar productos.</p>
+    </div>
+
+    <div id="inventario" class="seccion" style="display:none;">
+        <h3>Inventario</h3>
+        <p>Aquí puedes consultar los niveles de stock.</p>
+    </div>
+
+    <div id="usuarios" class="seccion" style="display:none;">
+        <h3>Usuarios</h3>
+        <p>Aquí puedes administrar los usuarios registrados.</p>
+    </div>
+
+    <script>
+        function mostrarSeccion(id) {
+            const secciones = document.querySelectorAll('.seccion');
+            secciones.forEach(sec => sec.style.display = 'none');
+            document.getElementById(id).style.display = 'block';
+        }
+
+        // Mostrar el nombre del usuario guardado en el almacenamiento local (si existe)
+        const nombre = localStorage.getItem('nombreUsuario') || "Administrador";
+        document.getElementById('nombreUsuario').textContent = nombre;
+    </script>
+      <p class="volver">
+                <a href="index.html">← Volver al inicio</a>
+            </p>
+
+</body>
+</html>

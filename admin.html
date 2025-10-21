@@ -1,45 +1,52 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Panel del Administrador</title>
-  <link rel="stylesheet" href="estilos.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Administrador</title>
+    <link rel="stylesheet" href="style1.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-  <!-- Encabezado fijo -->
-  <div class="navbar">
-    <div class="logo">ADMIN PANEL</div>
-    <div class="right-menu">
-      <a href="#" onclick="history.back()">⬅ Volver</a>
+    <div class="admin-container">
+        <h2>Panel de Administrador</h2>
+
+        <form action="#" method="post" class="admin-form">
+            <div class="input-group">
+                <label for="usuario">Usuario administrador</label>
+                <input type="text" id="usuario" name="usuario" placeholder="Ingresa tu usuario" required>
+            </div>
+
+            <div class="input-group">
+                <label for="password">Contraseña</label>
+                <input type="password" id="password" name="password" placeholder="Ingresa tu contraseña" required>
+            </div>
+
+            <button type="submit" class="btn">Ingresar</button>
+
+            <p class="volver">
+                <a href="index.html">← Volver al inicio</a>
+            </p>
+        </form>
     </div>
-  </div>
 
-  <!-- Contenedor principal del panel -->
-  <div class="panel-admin">
-    <div class="admin-info">
-      <div class="admin-icon">
-        <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="Admin">
-      </div>
-      <div class="admin-name">NOMBRE DEL ADMIN</div>
-    </div>
+    <script>
+        const form = document.querySelector(".admin-form");
 
-    <div class="panel-botones">
-      <button class="panel-btn" onclick="location.href='inventario.html'">
-        <span>INVENTARIO</span>
-        <img src="https://cdn-icons-png.flaticon.com/512/992/992703.png" alt="Inventario">
-      </button>
+        form.addEventListener("submit", function(event) {
+            event.preventDefault();
 
-      <button class="panel-btn" onclick="location.href='reportes.html'">
-        <span>REPORTES</span>
-        <img src="https://cdn-icons-png.flaticon.com/512/1828/1828859.png" alt="Reportes">
-      </button>
+            const usuario = document.getElementById("usuario").value;
+            const password = document.getElementById("password").value;
 
-      <button class="panel-btn" onclick="location.href='gestion-productos.html'">
-        <span>GESTIÓN DE PRODUCTOS</span>
-        <img src="https://cdn-icons-png.flaticon.com/512/2921/2921222.png" alt="Gestión">
-      </button>
-    </div>
-  </div>
+            // validación local
+            if (usuario === "admin" && password === "1234") {
+                alert("Bienvenido administrador");
+                window.location.href = "panel_add.html";
+            } else {
+                alert("Credenciales incorrectas");
+            }
+        });
+    </script>
 </body>
 </html>
