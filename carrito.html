@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carrito - Arcade Shop</title>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+   
+  <style>
+    body {
+      margin: 0;
+      font-family: "Press Start 2P", system-ui;
+      background-color: #cfcfcf;
+      color: black;
+    }
+
+    /* ====== HEADER ====== */
+    header {
+      background-color: #210021;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+      position: relative;
+      z-index: 1000;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      font-size: 24px;
+    }
+
+    .menu-btn {
+      font-size: 28px;
+      cursor: pointer;
+      margin-right: 10px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin-left: 20px;
+      font-size: 12px;
+    }
+
+    /* ====== SIDEBAR ====== */
+    .sidebar {
+      position: fixed;
+      top: 90px;
+      left: -220px;
+      width: 200px;
+      height: 100%;
+      background-color: #2e002e;
+      display: flex;
+      flex-direction: column;
+      padding-top: 60px;
+      transition: left 0.3s ease;
+      z-index: 999;
+    }
+
+    .sidebar.active {
+      left: 0;
+    }
+
+    .sidebar a {
+      color: white;
+      text-decoration: none;
+      padding: 15px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      font-size: 10px;
+    }
+
+    .sidebar a:hover {
+      background-color: #4b004b;
+    }
+
+    /* ====== CONTENIDO ====== */
+    main {
+      padding: 20px;
+    }
+
+    h1 {
+      background-color: #2e002e;
+      color: white;
+      padding: 10px 20px;
+      display: inline-block;
+      border-radius: 4px;
+      font-size: 16px;
+    }
+
+    .carrito-lista {
+      margin-top: 30px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .producto {
+      background-color: #e3e3e3;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 0 5px #aaa;
+    }
+
+    .producto img {
+      width: 100px;
+      height: 100px;
+      object-fit: contain;
+    }
+
+    .info {
+      flex: 1;
+      margin-left: 20px;
+      font-size: 10px;
+      line-height: 1.5;
+    }
+
+    .precio {
+      font-size: 12px;
+      font-weight: bold;
+      margin-right: 20px;
+    }
+
+    .eliminar {
+      color: #4b004b;
+      font-size: 20px;
+      font-weight: bold;
+      cursor: pointer;
+      border: none;
+      background: none;
+    }
+
+    .comprar-btn {
+      display: block;
+      margin: 30px auto;
+      padding: 10px 30px;
+      font-family: "Press Start 2P", system-ui;
+      background-color: #210021;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 10px;
+    }
+
+    .comprar-btn:hover {
+      background-color: #4b004b;
+    }
+    .categoria {
+  font-family: "Press Start 2P", system-ui;
+  font-size: 18px;
+  background-color: #2e002e;
+  color: white;
+  padding: 17px 25px;       /* 🔹 Menos espacio interno */
+  display: inline-block;
+  border-radius: 4px;
+  margin: -95px 0 2px -35px; /* 🔹 Sube un poco y la mueve hacia la izquierda */
+}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <span class="menu-btn" id="menu-btn">&#9776;</span>
+      <h2>ARCADE SHOP</h2>
+    </div>
+    <nav>
+      <a href="registro.html">Registrarse</a>
+      <a href="login.html">Iniciar sesión</a>
+    </nav>
+  </header>
+
+  <!-- ====== MENÚ LATERAL ====== -->
+  <nav class="sidebar" id="sidebar">
+    <a href="index.html">Inicio</a>
+    <a href="mouse.html">Mouse</a>
+    <a href="teclados.html">Teclados</a>
+    <a href="sillas.html">Sillas</a>
+  </nav>
+
+  <!-- ====== CONTENIDO DEL CARRITO ====== -->
+  <main>
+ <h2 class="categoria">Carrito</h2>
+    <div class="carrito-lista" id="carritoLista">
+      <!-- Los productos se insertan con JS -->
+    </div>
+    <button class="comprar-btn">COMPRAR AHORA!</button>
+  </main>
+
+  <script>
+    // ====== FUNCIONALIDAD DEL MENÚ LATERAL ======
+    const menuBtn = document.getElementById('menu-btn');
+    const sidebar = document.getElementById('sidebar');
+    menuBtn.addEventListener('click', () => {
+      sidebar.classList.toggle('active');
+    });
+  </script>
+
+  <script>
+    // ====== LÓGICA DEL CARRITO ======
+    const carritoLista = document.getElementById('carritoLista');
+
+    function cargarCarrito() {
+      const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+
+      carritoLista.innerHTML = '';
+
+      if (carrito.length === 0) {
+        carritoLista.innerHTML = `<p style="font-size:12px;">Tu carrito está vacío.</p>`;
+        return;
+      }
+
+      carrito.forEach((producto, index) => {
+        const item = document.createElement('div');
+        item.classList.add('producto');
+        item.innerHTML = `
+          <img src="${producto.imagen}" alt="${producto.nombre}">
+          <div class="info">${producto.nombre}</div>
+          <div class="precio">$${producto.precio.toFixed(2)}</div>
+          <button class="eliminar" onclick="eliminarProducto(${index})">✖</button>
+        `;
+        carritoLista.appendChild(item);
+      });
+    }
+
+    function eliminarProducto(indice) {
+      let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+      carrito.splice(indice, 1);
+      localStorage.setItem('carrito', JSON.stringify(carrito));
+      cargarCarrito();
+    }
+
+    document.querySelector('.comprar-btn').addEventListener('click', () => {
+      alert('¡Compra realizada con éxito!');
+      localStorage.removeItem('carrito');
+      cargarCarrito();
+    });
+
+    cargarCarrito();
+  </script>
+</body>
+</html>
