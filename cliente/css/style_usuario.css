@@ -132,3 +132,9 @@ body {
 .register-text a:hover {
     text-decoration: underline;
 }
+.btn-center {
+  display: block;
+  margin: 20px auto; /* Centra horizontalmente */
+  width: 60%;
+  max-width: 300px;
+}

@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arcade Shop | Sillas</title>
+    <title>Arcade Shop | Teclados</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../css/style.css">
 
     <style>
         /* ====== ESTILOS DEL CONTADOR DEL CARRITO ====== */
@@ -20,7 +20,6 @@
             color: white;
         }
 
-        /* Circulito rojo con el número */
         .cart-count {
             position: absolute;
             top: -8px;
@@ -46,8 +45,8 @@
             <a href="carrito.html" class="cart">
                 🛒<span id="cart-count" class="cart-count">0</span>
             </a>
-            
-            <a href="login.html" class="link">Iniciar sesión</a>
+           
+            <a href="../pages/login.html" class="link">Iniciar sesión</a>
         </div>
     </header>
 
@@ -61,32 +60,31 @@
     
     <!-- ====== PRODUCTOS ====== -->
     <section class="productos">
-        <h2 class="categoria">Sillas</h2>
+        <h2 class="categoria">Teclados</h2>
         <div class="contenedor-productos">
             
-            <!-- Ejemplo de producto -->
             <div class="card-producto">
-                <img src="img/silla1.png" alt="Silla Gamer XYZ">
+                <img src="../img/teclado1.jpg" alt="Teclado RAZER Ornata V3 X">
                 <div class="info-producto">
-                    <p>Silla Gamer XYZ con soporte lumbar y reposabrazos ajustables</p>
-                    <p class="precio">$1999.00</p>
-                    <div class="estrellas">⭐⭐⭐⭐⭐</div>
+                    <p>RAZER Ornata V3 X Gamer, Conexión alámbrica, retroiluminado</p>
+                    <p class="precio">$974.00</p>
+                    <div class="estrellas">⭐⭐⭐</div>
                 </div>
                 <button class="btn-carrito" onclick="agregarCarrito(this)">🛒</button>
             </div>
 
             <div class="card-producto">
-                <img src="img/silla2.png" alt="Silla Gamer ABC">
+                <img src="../img/teclado2.jpeg" alt="Teclado HYPERX Alloy Origins Core">
                 <div class="info-producto">
-                    <p>Silla Gamer ABC ergonómica con ruedas giratorias</p>
-                    <p class="precio">$1799.00</p>
+                    <p>HYPERX Alloy Origins Core Gamer, Mecánico, Conexión alámbrica</p>
+                    <p class="precio">$2789.00</p>
                     <div class="estrellas">⭐⭐⭐⭐</div>
                 </div>
                 <button class="btn-carrito" onclick="agregarCarrito(this)">🛒</button>
             </div>
 
-            <!-- Puedes duplicar este bloque para más sillas -->
-            
+            <!-- Puedes agregar más productos siguiendo este formato -->
+
         </div>
     </section>
 
@@ -110,15 +108,13 @@
             const nombre = card.querySelector('.info-producto p').innerText;
             const precioTexto = card.querySelector('.precio').innerText;
             const imagen = card.querySelector('img').getAttribute('src');
-            const precio = parseFloat(precioTexto.replace('$', ''));
+            const precio = parseFloat(precioTexto.replace('$', '').replace(',', ''));
 
             const producto = { nombre, precio, imagen };
-
             let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
 
             // Evitar duplicados
-            const existe = carrito.some(p => p.nombre === producto.nombre);
-            if (!existe) {
+            if (!carrito.some(p => p.nombre === nombre)) {
                 carrito.push(producto);
                 localStorage.setItem('carrito', JSON.stringify(carrito));
             }
@@ -134,7 +130,7 @@
         window.addEventListener('DOMContentLoaded', () => {
             actualizarContador();
 
-            // Marcar productos ya en carrito
+            // Marcar productos que ya están en carrito
             const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
             document.querySelectorAll('.card-producto').forEach(card => {
                 const nombre = card.querySelector('.info-producto p').innerText;
@@ -147,6 +143,5 @@
             });
         });
     </script>
-
 </body>
 </html>

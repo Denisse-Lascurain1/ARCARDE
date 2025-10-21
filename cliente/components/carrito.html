@@ -103,7 +103,7 @@
   color: rgb(0, 0, 0);
   border-radius: 10px;
   margin-top: 120px;
-
+    }
     .item-carrito {
       display: flex;
       align-items: center;
@@ -170,13 +170,13 @@ header h2 {
     </div>
     <nav>
       
-      <a href="login.html">Iniciar sesión</a>
+      <a href="../pages/login.html">Iniciar sesión</a>
     </nav>
   </header>
 
   <!-- ====== SIDEBAR ====== -->
   <nav class="sidebar" id="sidebar">
-    <a href="index.html">Inicio</a>
+    <a href="../index.html">Inicio</a>
     <a href="mouse.html">Mouse</a>
     <a href="teclados.html">Teclados</a>
     <a href="sillas.html">Sillas</a>
@@ -239,15 +239,18 @@ header h2 {
     }
 
     comprarBtn.addEventListener('click', () => {
-      let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-      if (carrito.length === 0) {
-        alert("Tu carrito está vacío");
-        return;
-      }
-      alert("¡Compra realizada con éxito!");
-      localStorage.removeItem('carrito');
-      mostrarCarrito();
-    });
+  let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+  if (carrito.length === 0) {
+    alert("Tu carrito está vacío 🛒");
+    return;
+  }
+
+  // Guardar el carrito en localStorage (ya lo tienes)
+  localStorage.setItem('carrito', JSON.stringify(carrito));
+
+  // Redirigir a la página de pago
+  window.location.href = "pago.html";
+});
 
     window.addEventListener('DOMContentLoaded', mostrarCarrito);
   </script>

@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arcade Shop | Mouse</title>
+    <title>Arcade Shop | Sillas</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../css/style.css">
 
     <style>
         /* ====== ESTILOS DEL CONTADOR DEL CARRITO ====== */
@@ -20,7 +20,7 @@
             color: white;
         }
 
-        /* 🔸 Circulito rojo con el número */
+        /* Circulito rojo con el número */
         .cart-count {
             position: absolute;
             top: -8px;
@@ -38,11 +38,11 @@
 </head>
 
 <body>
+    <!-- ====== HEADER ====== -->
     <header class="navbar">
         <div class="menu-btn" id="menu-btn">☰</div>
         <h1 class="logo">ARCADE SHOP</h1>
         <div class="right-menu">
-            <!-- 🔹 Aquí agregamos un span para el contador -->
             <a href="carrito.html" class="cart">
                 🛒<span id="cart-count" class="cart-count">0</span>
             </a>
@@ -51,40 +51,42 @@
         </div>
     </header>
 
+    <!-- ====== SIDEBAR ====== -->
     <nav class="sidebar" id="sidebar">
-        <a href="index.html">Inicio</a>
-        <li><a href="mouse.html">Mouse</a></li>
+        <a href="../index.html">Inicio</a>
+        <a href="mouse.html">Mouse</a>
         <a href="teclados.html">Teclados</a>
         <a href="sillas.html">Sillas</a>
     </nav>
     
+    <!-- ====== PRODUCTOS ====== -->
     <section class="productos">
-        <h2 class="categoria">Mouse</h2>
+        <h2 class="categoria">Sillas</h2>
         <div class="contenedor-productos">
             
-            <!-- 🔹 Ejemplo de producto con datos completos -->
+            <!-- Ejemplo de producto -->
             <div class="card-producto">
-                <img src="img/mouse1.png" alt="Mouse Gamer ASUS">
+                <img src="../img/silla1.png" alt="Silla Gamer XYZ">
                 <div class="info-producto">
-                    <p>Mouse Gamer ASUS TUF GAMING M3 GEN II USB 2.0 8000DPI 6 Botones negro</p>
-                    <p class="precio">$499.00</p>
-                    <div class="estrellas">⭐⭐⭐</div>
-                </div>
-                <!-- Al hacer click se agrega al carrito -->
-                <button class="btn-carrito" onclick="agregarCarrito(this)">🛒</button>
-            </div>
-
-            <!-- 🔹 Ejemplo vacío -->
-            <div class="card-producto">
-                <img src="img/.png" alt="">
-                <div class="info-producto">
-                    <p></p>
-                    <p class="precio">$</p>
-                    <div class="estrellas">⭐⭐⭐</div>
+                    <p>Silla Gamer XYZ con soporte lumbar y reposabrazos ajustables</p>
+                    <p class="precio">$1999.00</p>
+                    <div class="estrellas">⭐⭐⭐⭐⭐</div>
                 </div>
                 <button class="btn-carrito" onclick="agregarCarrito(this)">🛒</button>
             </div>
 
+            <div class="card-producto">
+                <img src="../img/silla2.png" alt="Silla Gamer ABC">
+                <div class="info-producto">
+                    <p>Silla Gamer ABC ergonómica con ruedas giratorias</p>
+                    <p class="precio">$1799.00</p>
+                    <div class="estrellas">⭐⭐⭐⭐</div>
+                </div>
+                <button class="btn-carrito" onclick="agregarCarrito(this)">🛒</button>
+            </div>
+
+            <!-- Puedes duplicar este bloque para más sillas -->
+            
         </div>
     </section>
 
@@ -96,21 +98,14 @@
             sidebar.classList.toggle('active');
         });
 
-
-        // ====== FUNCIÓN PARA ACTUALIZAR CONTADOR ======
+        // ====== ACTUALIZAR CONTADOR DEL CARRITO ======
         function actualizarContador() {
             const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-            const contador = document.getElementById('cart-count');
-            contador.innerText = carrito.length;
+            document.getElementById('cart-count').innerText = carrito.length;
         }
 
-
-        // ====== FUNCIÓN PARA AGREGAR PRODUCTOS AL CARRITO ======
+        // ====== AGREGAR PRODUCTO AL CARRITO ======
         function agregarCarrito(boton) {
-            boton.innerText = "✔️";
-            boton.style.color = "green";
-            boton.disabled = true;
-
             const card = boton.closest('.card-producto');
             const nombre = card.querySelector('.info-producto p').innerText;
             const precioTexto = card.querySelector('.precio').innerText;
@@ -118,44 +113,39 @@
             const precio = parseFloat(precioTexto.replace('$', ''));
 
             const producto = { nombre, precio, imagen };
+
             let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
 
+            // Evitar duplicados
             const existe = carrito.some(p => p.nombre === producto.nombre);
             if (!existe) {
                 carrito.push(producto);
                 localStorage.setItem('carrito', JSON.stringify(carrito));
-                console.log(`✅ Producto agregado: ${producto.nombre}`);
-            } else {
-                console.log(`⚠️ El producto "${producto.nombre}" ya está en el carrito.`);
             }
 
-            // 🔹 Actualiza el contador en tiempo real
+            // Cambiar botón a ✔️ y actualizar contador
+            boton.innerText = "✔️";
+            boton.style.color = "green";
+            boton.disabled = true;
             actualizarContador();
         }
 
-
         // ====== AL CARGAR LA PÁGINA ======
         window.addEventListener('DOMContentLoaded', () => {
-            // 🔹 Cargar el contador de productos desde localStorage
             actualizarContador();
 
-            // 🔹 Marcar los botones con palomita si ya están en el carrito
+            // Marcar productos ya en carrito
             const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-            const tarjetas = document.querySelectorAll('.card-producto');
-
-            tarjetas.forEach(card => {
+            document.querySelectorAll('.card-producto').forEach(card => {
                 const nombre = card.querySelector('.info-producto p').innerText;
                 const boton = card.querySelector('.btn-carrito');
-                const existe = carrito.some(p => p.nombre === nombre);
-                if (existe) {
+                if (carrito.some(p => p.nombre === nombre)) {
                     boton.innerText = "✔️";
                     boton.style.color = "green";
                     boton.disabled = true;
                 }
             });
         });
-
-        console.log("🛒 Sistema de carrito conectado correctamente con contador dinámico.");
     </script>
 
 </body>
