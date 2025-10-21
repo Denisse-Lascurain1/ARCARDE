@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Carrito - Arcade Shop</title>
+  <title>Carrito | Arcade Shop</title>
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-   
   <style>
+    /* ====== GLOBAL ====== */
     body {
       margin: 0;
       font-family: "Press Start 2P", system-ui;
@@ -76,82 +76,12 @@
       background-color: #4b004b;
     }
 
-    /* ====== CONTENIDO ====== */
+    /* ====== CONTENIDO DEL CARRITO ====== */
     main {
       padding: 20px;
     }
 
-    h1 {
-      background-color: #2e002e;
-      color: white;
-      padding: 10px 20px;
-      display: inline-block;
-      border-radius: 4px;
-      font-size: 16px;
-    }
-
-    .carrito-lista {
-      margin-top: 30px;
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-    }
-
-    .producto {
-      background-color: #e3e3e3;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 15px;
-      border-radius: 8px;
-      box-shadow: 0 0 5px #aaa;
-    }
-
-    .producto img {
-      width: 100px;
-      height: 100px;
-      object-fit: contain;
-    }
-
-    .info {
-      flex: 1;
-      margin-left: 20px;
-      font-size: 10px;
-      line-height: 1.5;
-    }
-
-    .precio {
-      font-size: 12px;
-      font-weight: bold;
-      margin-right: 20px;
-    }
-
-    .eliminar {
-      color: #4b004b;
-      font-size: 20px;
-      font-weight: bold;
-      cursor: pointer;
-      border: none;
-      background: none;
-    }
-
-    .comprar-btn {
-      display: block;
-      margin: 30px auto;
-      padding: 10px 30px;
-      font-family: "Press Start 2P", system-ui;
-      background-color: #210021;
-      color: white;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-      font-size: 10px;
-    }
-
-    .comprar-btn:hover {
-      background-color: #4b004b;
-    }
-    .categoria {
+    h2.categoria {
   font-family: "Press Start 2P", system-ui;
   font-size: 18px;
   background-color: #2e002e;
@@ -161,9 +91,67 @@
   border-radius: 4px;
   margin: -95px 0 2px -35px; /* 🔹 Sube un poco y la mueve hacia la izquierda */
 }
+
+
+    .carrito-contenido {
+      padding: 20px;
+      font-family: "Press Start 2P", system-ui;
+      background-color: #dad5da;
+      color: rgb(0, 0, 0);
+      border-radius: 10px;
+      margin-top: 15px;
+    }
+
+    .item-carrito {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #968696;
+      margin-bottom: 15px;
+      padding: 10px;
+      border-radius: 10px;
+    }
+
+    .item-carrito img {
+      width: 80px;
+      height: 80px;
+      object-fit: contain;
+      border-radius: 8px;
+    }
+
+    .btn-eliminar {
+      background: none;
+      border: none;
+      color: red;
+      font-size: 20px;
+      cursor: pointer;
+    }
+
+    .total {
+      margin-top: 20px;
+      text-align: right;
+      font-size: 12px;
+    }
+
+    .comprar-btn {
+      display: block;
+      margin: 20px auto;
+      padding: 10px 30px;
+      background-color: #210021;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 12px;
+    }
+
+    .comprar-btn:hover {
+      background-color: #4b004b;
+    }
   </style>
 </head>
 <body>
+  <!-- ====== HEADER ====== -->
   <header>
     <div class="logo">
       <span class="menu-btn" id="menu-btn">&#9776;</span>
@@ -175,7 +163,7 @@
     </nav>
   </header>
 
-  <!-- ====== MENÚ LATERAL ====== -->
+  <!-- ====== SIDEBAR ====== -->
   <nav class="sidebar" id="sidebar">
     <a href="index.html">Inicio</a>
     <a href="mouse.html">Mouse</a>
@@ -183,65 +171,74 @@
     <a href="sillas.html">Sillas</a>
   </nav>
 
-  <!-- ====== CONTENIDO DEL CARRITO ====== -->
+  <!-- ====== CONTENIDO ====== -->
   <main>
- <h2 class="categoria">Carrito</h2>
-    <div class="carrito-lista" id="carritoLista">
-      <!-- Los productos se insertan con JS -->
-    </div>
-    <button class="comprar-btn">COMPRAR AHORA!</button>
+    <h2 class="categoria">Carrito</h2>
+    <section class="carrito-contenido" id="carritoContenido">
+      <div id="lista-carrito"></div>
+      <h3 id="total" class="total"></h3>
+      <button class="comprar-btn" id="comprarBtn">COMPRAR AHORA!</button>
+    </section>
   </main>
 
   <script>
-    // ====== FUNCIONALIDAD DEL MENÚ LATERAL ======
+    // ====== MENÚ LATERAL ======
     const menuBtn = document.getElementById('menu-btn');
     const sidebar = document.getElementById('sidebar');
     menuBtn.addEventListener('click', () => {
       sidebar.classList.toggle('active');
     });
-  </script>
 
-  <script>
-    // ====== LÓGICA DEL CARRITO ======
-    const carritoLista = document.getElementById('carritoLista');
+    // ====== CARRITO ======
+    const listaCarrito = document.getElementById('lista-carrito');
+    const totalElemento = document.getElementById('total');
+    const comprarBtn = document.getElementById('comprarBtn');
 
-    function cargarCarrito() {
-      const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-
-      carritoLista.innerHTML = '';
+    function mostrarCarrito() {
+      listaCarrito.innerHTML = "";
+      let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+      let total = 0;
 
       if (carrito.length === 0) {
-        carritoLista.innerHTML = `<p style="font-size:12px;">Tu carrito está vacío.</p>`;
+        totalElemento.innerText = "🛒 Tu carrito está vacío";
         return;
       }
 
       carrito.forEach((producto, index) => {
         const item = document.createElement('div');
-        item.classList.add('producto');
+        item.classList.add('item-carrito');
         item.innerHTML = `
           <img src="${producto.imagen}" alt="${producto.nombre}">
-          <div class="info">${producto.nombre}</div>
-          <div class="precio">$${producto.precio.toFixed(2)}</div>
-          <button class="eliminar" onclick="eliminarProducto(${index})">✖</button>
+          <p>${producto.nombre}</p>
+          <p>$${producto.precio.toFixed(2)}</p>
+          <button class="btn-eliminar" onclick="eliminarProducto(${index})">❌</button>
         `;
-        carritoLista.appendChild(item);
+        listaCarrito.appendChild(item);
+        total += producto.precio;
       });
+
+      totalElemento.innerText = `Total: $${total.toFixed(2)}`;
     }
 
-    function eliminarProducto(indice) {
+    function eliminarProducto(index) {
       let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-      carrito.splice(indice, 1);
+      carrito.splice(index, 1);
       localStorage.setItem('carrito', JSON.stringify(carrito));
-      cargarCarrito();
+      mostrarCarrito();
     }
 
-    document.querySelector('.comprar-btn').addEventListener('click', () => {
-      alert('¡Compra realizada con éxito!');
+    comprarBtn.addEventListener('click', () => {
+      let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+      if (carrito.length === 0) {
+        alert("Tu carrito está vacío");
+        return;
+      }
+      alert("¡Compra realizada con éxito!");
       localStorage.removeItem('carrito');
-      cargarCarrito();
+      mostrarCarrito();
     });
 
-    cargarCarrito();
+    window.addEventListener('DOMContentLoaded', mostrarCarrito);
   </script>
 </body>
 </html>

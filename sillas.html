@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arcade Shop | Mouse</title>
+    <title>Arcade Shop | Sillas</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,187 +11,141 @@
     
     <link rel="stylesheet" href="style.css">
 
+    <style>
+        /* ====== ESTILOS DEL CONTADOR DEL CARRITO ====== */
+        .cart {
+            position: relative;
+            font-size: 22px;
+            text-decoration: none;
+            color: white;
+        }
+
+        /* Circulito rojo con el número */
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -10px;
+            background-color: red;
+            color: white;
+            font-size: 12px;
+            font-family: "Press Start 2P", system-ui;
+            border-radius: 50%;
+            padding: 3px 6px;
+            min-width: 18px;
+            text-align: center;
+        }
+    </style>
 </head>
 
 <body>
+    <!-- ====== HEADER ====== -->
     <header class="navbar">
         <div class="menu-btn" id="menu-btn">☰</div>
         <h1 class="logo">ARCADE SHOP</h1>
         <div class="right-menu">
-            <a href="carrito.html" class="cart">🛒</a>
+            <a href="carrito.html" class="cart">
+                🛒<span id="cart-count" class="cart-count">0</span>
+            </a>
             <a href="registro.html" class="link">Registrarse</a>
             <a href="login.html" class="link">Iniciar sesión</a>
         </div>
     </header>
 
+    <!-- ====== SIDEBAR ====== -->
     <nav class="sidebar" id="sidebar">
         <a href="index.html">Inicio</a>
-        <li><a href="mouse.html">Mouse</a></li>
+        <a href="mouse.html">Mouse</a>
         <a href="teclados.html">Teclados</a>
         <a href="sillas.html">Sillas</a>
     </nav>
     
+    <!-- ====== PRODUCTOS ====== -->
     <section class="productos">
         <h2 class="categoria">Sillas</h2>
         <div class="contenedor-productos">
             
+            <!-- Ejemplo de producto -->
             <div class="card-producto">
-                <img src="img/silla1.png" alt="Mouse Gamer ASUS">
+                <img src="img/silla1.png" alt="Silla Gamer XYZ">
                 <div class="info-producto">
-                    <p></p>
-                    <p class="precio"></p>
-                    <div class="estrellas">⭐⭐⭐</div>
+                    <p>Silla Gamer XYZ con soporte lumbar y reposabrazos ajustables</p>
+                    <p class="precio">$1999.00</p>
+                    <div class="estrellas">⭐⭐⭐⭐⭐</div>
                 </div>
                 <button class="btn-carrito" onclick="agregarCarrito(this)">🛒</button>
             </div>
 
             <div class="card-producto">
-                <img src="img/.png" alt="">
+                <img src="img/silla2.png" alt="Silla Gamer ABC">
                 <div class="info-producto">
-                    <p></p>
-                    <p class="precio">$</p>
-                    <div class="estrellas">⭐⭐⭐</div>
+                    <p>Silla Gamer ABC ergonómica con ruedas giratorias</p>
+                    <p class="precio">$1799.00</p>
+                    <div class="estrellas">⭐⭐⭐⭐</div>
                 </div>
-                
                 <button class="btn-carrito" onclick="agregarCarrito(this)">🛒</button>
             </div>
-             <div class="card-producto">
-                <img src="img/.png" alt="">
-                <div class="info-producto">
-                    <p></p>
-                    <p class="precio">$</p>
-                    <div class="estrellas">⭐⭐⭐</div>
-                </div>
-                
-                <button class="btn-carrito" onclick="agregarCarrito(this)">🛒</button>
-            </div>
- <div class="card-producto">
-                <img src="img/.png" alt="">
-                <div class="info-producto">
-                    <p></p>
-                    <p class="precio">$</p>
-                    <div class="estrellas">⭐⭐⭐</div>
-                </div>
-                
-                <button class="btn-carrito" onclick="agregarCarrito(this)">🛒</button>
-            </div>
-             <div class="card-producto">
-                <img src="img/.png" alt="">
-                <div class="info-producto">
-                    <p></p>
-                    <p class="precio">$</p>
-                    <div class="estrellas">⭐⭐⭐</div>
-                </div>
-                
-                <button class="btn-carrito" onclick="agregarCarrito(this)">🛒</button>
-            </div>
-             <div class="card-producto">
-                <img src="img/.png" alt="">
-                <div class="info-producto">
-                    <p></p>
-                    <p class="precio">$</p>
-                    <div class="estrellas">⭐⭐⭐</div>
-                </div>
-                
-                <button class="btn-carrito" onclick="agregarCarrito(this)">🛒</button>
-            </div>
-             <div class="card-producto">
-                <img src="img/.png" alt="">
-                <div class="info-producto">
-                    <p></p>
-                    <p class="precio">$</p>
-                    <div class="estrellas">⭐⭐⭐</div>
-                </div>
-                
-                <button class="btn-carrito" onclick="agregarCarrito(this)">🛒</button>
-            </div>
-             <div class="card-producto">
-                <img src="img/.png" alt="">
-                <div class="info-producto">
-                    <p></p>
-                    <p class="precio">$</p>
-                    <div class="estrellas">⭐⭐⭐</div>
-                </div>
-                
-                <button class="btn-carrito" onclick="agregarCarrito(this)">🛒</button>
-            </div>
-             <div class="card-producto">
-                <img src="img/.png" alt="">
-                <div class="info-producto">
-                    <p></p>
-                    <p class="precio">$</p>
-                    <div class="estrellas">⭐⭐⭐</div>
-                </div>
-                
-                <button class="btn-carrito" onclick="agregarCarrito(this)">🛒</button>
-            </div>
-             <div class="card-producto">
-                <img src="img/.png" alt="">
-                <div class="info-producto">
-                    <p></p>
-                    <p class="precio">$</p>
-                    <div class="estrellas">⭐⭐⭐</div>
-                </div>
-                
-                <button class="btn-carrito" onclick="agregarCarrito(this)">🛒</button>
-            </div>
-             <div class="card-producto">
-                <img src="img/.png" alt="">
-                <div class="info-producto">
-                    <p></p>
-                    <p class="precio">$</p>
-                    <div class="estrellas">⭐⭐⭐</div>
-                </div>
-                
-                <button class="btn-carrito" onclick="agregarCarrito(this)">🛒</button>
-            </div>
-             <div class="card-producto">
-                <img src="img/.png" alt="">
-                <div class="info-producto">
-                    <p></p>
-                    <p class="precio">$</p>
-                    <div class="estrellas">⭐⭐⭐</div>
-                </div>
-                
-                <button class="btn-carrito" onclick="agregarCarrito(this)">🛒</button>
-            </div>
-             <div class="card-producto">
-                <img src="img/.png" alt="">
-                <div class="info-producto">
-                    <p></p>
-                    <p class="precio">$</p>
-                    <div class="estrellas">⭐⭐⭐</div>
-                </div>
-                
-                <button class="btn-carrito" onclick="agregarCarrito(this)">🛒</button>
-            </div>
-             <div class="card-producto">
-                <img src="img/.png" alt="">
-                <div class="info-producto">
-                    <p></p>
-                    <p class="precio">$</p>
-                    <div class="estrellas">⭐⭐⭐</div>
-                </div>
-                
-                <button class="btn-carrito" onclick="agregarCarrito(this)">🛒</button>
-            </div>
+
+            <!-- Puedes duplicar este bloque para más sillas -->
+            
         </div>
     </section>
 
     <script>
-        // Toggle del menú lateral
+        // ====== TOGGLE DEL MENÚ LATERAL ======
         const menuBtn = document.getElementById('menu-btn');
         const sidebar = document.getElementById('sidebar');
         menuBtn.addEventListener('click', () => {
             sidebar.classList.toggle('active');
         });
 
-        // Cambia el ícono del carrito por una palomita (función que ya tenías)
+        // ====== ACTUALIZAR CONTADOR DEL CARRITO ======
+        function actualizarContador() {
+            const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+            document.getElementById('cart-count').innerText = carrito.length;
+        }
+
+        // ====== AGREGAR PRODUCTO AL CARRITO ======
         function agregarCarrito(boton) {
+            const card = boton.closest('.card-producto');
+            const nombre = card.querySelector('.info-producto p').innerText;
+            const precioTexto = card.querySelector('.precio').innerText;
+            const imagen = card.querySelector('img').getAttribute('src');
+            const precio = parseFloat(precioTexto.replace('$', ''));
+
+            const producto = { nombre, precio, imagen };
+
+            let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+
+            // Evitar duplicados
+            const existe = carrito.some(p => p.nombre === producto.nombre);
+            if (!existe) {
+                carrito.push(producto);
+                localStorage.setItem('carrito', JSON.stringify(carrito));
+            }
+
+            // Cambiar botón a ✔️ y actualizar contador
             boton.innerText = "✔️";
             boton.style.color = "green";
-            boton.disabled = true; // evita que lo vuelvan a presionar
+            boton.disabled = true;
+            actualizarContador();
         }
+
+        // ====== AL CARGAR LA PÁGINA ======
+        window.addEventListener('DOMContentLoaded', () => {
+            actualizarContador();
+
+            // Marcar productos ya en carrito
+            const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+            document.querySelectorAll('.card-producto').forEach(card => {
+                const nombre = card.querySelector('.info-producto p').innerText;
+                const boton = card.querySelector('.btn-carrito');
+                if (carrito.some(p => p.nombre === nombre)) {
+                    boton.innerText = "✔️";
+                    boton.style.color = "green";
+                    boton.disabled = true;
+                }
+            });
+        });
     </script>
 
 </body>

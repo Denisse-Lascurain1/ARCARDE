@@ -11,6 +11,30 @@
     
     <link rel="stylesheet" href="style.css">
 
+    <style>
+        /* ====== ESTILOS DEL CONTADOR DEL CARRITO ====== */
+        .cart {
+            position: relative;
+            font-size: 22px;
+            text-decoration: none;
+            color: white;
+        }
+
+        /* 🔸 Circulito rojo con el número */
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -10px;
+            background-color: red;
+            color: white;
+            font-size: 12px;
+            font-family: "Press Start 2P", system-ui;
+            border-radius: 50%;
+            padding: 3px 6px;
+            min-width: 18px;
+            text-align: center;
+        }
+    </style>
 </head>
 
 <body>
@@ -18,7 +42,10 @@
         <div class="menu-btn" id="menu-btn">☰</div>
         <h1 class="logo">ARCADE SHOP</h1>
         <div class="right-menu">
-            <a href="carrito.html" class="cart">🛒</a>
+            <!-- 🔹 Aquí agregamos un span para el contador -->
+            <a href="carrito.html" class="cart">
+                🛒<span id="cart-count" class="cart-count">0</span>
+            </a>
             <a href="registro.html" class="link">Registrarse</a>
             <a href="login.html" class="link">Iniciar sesión</a>
         </div>
@@ -35,6 +62,7 @@
         <h2 class="categoria">Mouse</h2>
         <div class="contenedor-productos">
             
+            <!-- 🔹 Ejemplo de producto con datos completos -->
             <div class="card-producto">
                 <img src="img/mouse1.png" alt="Mouse Gamer ASUS">
                 <div class="info-producto">
@@ -42,156 +70,92 @@
                     <p class="precio">$499.00</p>
                     <div class="estrellas">⭐⭐⭐</div>
                 </div>
+                <!-- Al hacer click se agrega al carrito -->
                 <button class="btn-carrito" onclick="agregarCarrito(this)">🛒</button>
             </div>
 
-             <div class="card-producto">
+            <!-- 🔹 Ejemplo vacío -->
+            <div class="card-producto">
                 <img src="img/.png" alt="">
                 <div class="info-producto">
                     <p></p>
                     <p class="precio">$</p>
                     <div class="estrellas">⭐⭐⭐</div>
                 </div>
-                
                 <button class="btn-carrito" onclick="agregarCarrito(this)">🛒</button>
             </div>
-             <div class="card-producto">
-                <img src="img/.png" alt="">
-                <div class="info-producto">
-                    <p></p>
-                    <p class="precio">$</p>
-                    <div class="estrellas">⭐⭐⭐</div>
-                </div>
-                
-                <button class="btn-carrito" onclick="agregarCarrito(this)">🛒</button>
-            </div>
-             <div class="card-producto">
-                <img src="img/.png" alt="">
-                <div class="info-producto">
-                    <p></p>
-                    <p class="precio">$</p>
-                    <div class="estrellas">⭐⭐⭐</div>
-                </div>
-                
-                <button class="btn-carrito" onclick="agregarCarrito(this)">🛒</button>
-            </div>
-             <div class="card-producto">
-                <img src="img/.png" alt="">
-                <div class="info-producto">
-                    <p></p>
-                    <p class="precio">$</p>
-                    <div class="estrellas">⭐⭐⭐</div>
-                </div>
-                
-                <button class="btn-carrito" onclick="agregarCarrito(this)">🛒</button>
-            </div>
-             <div class="card-producto">
-                <img src="img/.png" alt="">
-                <div class="info-producto">
-                    <p></p>
-                    <p class="precio">$</p>
-                    <div class="estrellas">⭐⭐⭐</div>
-                </div>
-                
-                <button class="btn-carrito" onclick="agregarCarrito(this)">🛒</button>
-            </div>
-             <div class="card-producto">
-                <img src="img/.png" alt="">
-                <div class="info-producto">
-                    <p></p>
-                    <p class="precio">$</p>
-                    <div class="estrellas">⭐⭐⭐</div>
-                </div>
-                
-                <button class="btn-carrito" onclick="agregarCarrito(this)">🛒</button>
-            </div>
-             <div class="card-producto">
-                <img src="img/.png" alt="">
-                <div class="info-producto">
-                    <p></p>
-                    <p class="precio">$</p>
-                    <div class="estrellas">⭐⭐⭐</div>
-                </div>
-                
-                <button class="btn-carrito" onclick="agregarCarrito(this)">🛒</button>
-            </div>
-             <div class="card-producto">
-                <img src="img/.png" alt="">
-                <div class="info-producto">
-                    <p></p>
-                    <p class="precio">$</p>
-                    <div class="estrellas">⭐⭐⭐</div>
-                </div>
-                
-                <button class="btn-carrito" onclick="agregarCarrito(this)">🛒</button>
-            </div>
-             <div class="card-producto">
-                <img src="img/.png" alt="">
-                <div class="info-producto">
-                    <p></p>
-                    <p class="precio">$</p>
-                    <div class="estrellas">⭐⭐⭐</div>
-                </div>
-                
-                <button class="btn-carrito" onclick="agregarCarrito(this)">🛒</button>
-            </div>
-             <div class="card-producto">
-                <img src="img/.png" alt="">
-                <div class="info-producto">
-                    <p></p>
-                    <p class="precio">$</p>
-                    <div class="estrellas">⭐⭐⭐</div>
-                </div>
-                
-                <button class="btn-carrito" onclick="agregarCarrito(this)">🛒</button>
-            </div>
-             <div class="card-producto">
-                <img src="img/.png" alt="">
-                <div class="info-producto">
-                    <p></p>
-                    <p class="precio">$</p>
-                    <div class="estrellas">⭐⭐⭐</div>
-                </div>
-                
-                <button class="btn-carrito" onclick="agregarCarrito(this)">🛒</button>
-            </div>
-             <div class="card-producto">
-                <img src="img/.png" alt="">
-                <div class="info-producto">
-                    <p></p>
-                    <p class="precio">$</p>
-                    <div class="estrellas">⭐⭐⭐</div>
-                </div>
-                
-                <button class="btn-carrito" onclick="agregarCarrito(this)">🛒</button>
-            </div>
-             <div class="card-producto">
-                <img src="img/.png" alt="">
-                <div class="info-producto">
-                    <p></p>
-                    <p class="precio">$</p>
-                    <div class="estrellas">⭐⭐⭐</div>
-                </div>
-                
-                <button class="btn-carrito" onclick="agregarCarrito(this)">🛒</button>
-            </div>
+
         </div>
     </section>
 
     <script>
-        // Toggle del menú lateral
+        // ====== TOGGLE DEL MENÚ LATERAL ======
         const menuBtn = document.getElementById('menu-btn');
         const sidebar = document.getElementById('sidebar');
         menuBtn.addEventListener('click', () => {
             sidebar.classList.toggle('active');
         });
 
-        // Cambia el ícono del carrito por una palomita (función que ya tenías)
+
+        // ====== FUNCIÓN PARA ACTUALIZAR CONTADOR ======
+        function actualizarContador() {
+            const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+            const contador = document.getElementById('cart-count');
+            contador.innerText = carrito.length;
+        }
+
+
+        // ====== FUNCIÓN PARA AGREGAR PRODUCTOS AL CARRITO ======
         function agregarCarrito(boton) {
             boton.innerText = "✔️";
             boton.style.color = "green";
-            boton.disabled = true; // evita que lo vuelvan a presionar
+            boton.disabled = true;
+
+            const card = boton.closest('.card-producto');
+            const nombre = card.querySelector('.info-producto p').innerText;
+            const precioTexto = card.querySelector('.precio').innerText;
+            const imagen = card.querySelector('img').getAttribute('src');
+            const precio = parseFloat(precioTexto.replace('$', ''));
+
+            const producto = { nombre, precio, imagen };
+            let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+
+            const existe = carrito.some(p => p.nombre === producto.nombre);
+            if (!existe) {
+                carrito.push(producto);
+                localStorage.setItem('carrito', JSON.stringify(carrito));
+                console.log(`✅ Producto agregado: ${producto.nombre}`);
+            } else {
+                console.log(`⚠️ El producto "${producto.nombre}" ya está en el carrito.`);
+            }
+
+            // 🔹 Actualiza el contador en tiempo real
+            actualizarContador();
         }
+
+
+        // ====== AL CARGAR LA PÁGINA ======
+        window.addEventListener('DOMContentLoaded', () => {
+            // 🔹 Cargar el contador de productos desde localStorage
+            actualizarContador();
+
+            // 🔹 Marcar los botones con palomita si ya están en el carrito
+            const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+            const tarjetas = document.querySelectorAll('.card-producto');
+
+            tarjetas.forEach(card => {
+                const nombre = card.querySelector('.info-producto p').innerText;
+                const boton = card.querySelector('.btn-carrito');
+                const existe = carrito.some(p => p.nombre === nombre);
+                if (existe) {
+                    boton.innerText = "✔️";
+                    boton.style.color = "green";
+                    boton.disabled = true;
+                }
+            });
+        });
+
+        console.log("🛒 Sistema de carrito conectado correctamente con contador dinámico.");
     </script>
 
 </body>
