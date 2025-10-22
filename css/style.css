@@ -1,0 +1,283 @@
+/* ===== Estilos generales ===== */
+body {
+  margin: 0;
+   overflow-x: hidden;
+  font-family: "Press Start 2P", system-ui;
+  color: white;
+  background-color: black;
+  padding-top: 100px;
+}
+
+/* ===== Encabezado ===== */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #210021;
+  color: white;
+  padding: 30px 30px;
+  position: fixed;
+  width: 97%;
+  top: 0;
+  z-index: 10;
+}
+
+.logo {
+  font-size: 20px;
+  letter-spacing: 10px;
+}
+
+.menu-btn {
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.right-menu {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.right-menu a {
+  text-decoration: none;
+  color: white;
+  font-size: 10px;
+  transition: color 0.3s ease;
+}
+
+.right-menu .cart {
+  font-size: 32px ; /* El tamaño es mucho más grande ahora */
+}
+
+.right-menu a:hover {
+  color: #00ffff;
+}
+
+/* ===== Menú lateral ===== */
+.sidebar {
+  position: fixed;
+  top: 90px;
+  left: -200px;
+  width: 200px;
+  height: 100%;
+  background-color: rgba(10, 0, 10, 0.9);
+  padding-top: 20px;
+  transition: 0.3s;
+  z-index: 9;
+  overflow-y: auto;
+}
+
+.sidebar.active {
+  left: 0;
+}
+
+.sidebar a {
+  display: block;
+  padding: 15px;
+  color: white;
+  text-decoration: none;
+  font-size: 10px;
+}
+
+.sidebar a:hover {
+  background-color: #440044;
+}
+
+/* ===== Carrusel estilo antiguo ===== */
+.carousel {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  margin-top: 60px;
+}
+
+.slides {
+  display: flex;
+  width: 300%;
+  animation: slide 70s infinite;
+}
+
+.slides img {
+  width: 100%;
+  height: 100vh;
+  object-fit: cover;
+}
+
+@keyframes slide {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-100%); }
+  50% { transform: translateX(-200%); }
+  40% { transform: translateX(-200%); } /* pausa */
+  95% { transform: translateX(0); } /* vuelve al inicio */
+}
+
+.admin {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  font-size: 10px;
+  color: white;
+}
+
+/* ===== Slider estilo fade (nuevo) ===== */
+.slider {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  margin-top: 50px; /* debajo del header fijo */
+}
+
+.slider-slides {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.slide.active {
+  opacity: 1;
+}
+
+/* Botones prev / next */
+.prev-btn, .next-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.5);
+  border: none;
+  color: white;
+  font-size: 24px;
+  padding: 8px 12px;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.prev-btn {
+  left: 20px;
+}
+
+.next-btn {
+  right: 20px;
+}
+
+/* Puntos indicativos (dots) */
+.slider-dots {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+  z-index: 10;
+}
+
+.slider-dots .dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+}
+
+.slider-dots .dot.active {
+  background-color: white;
+}
+
+.productos {
+  padding: 2rem;
+  background-color: #fff;
+  min-height: 100vh
+}
+
+.categoria {
+  font-family: "Press Start 2P", system-ui;
+  font-size: 18px;
+  background-color: #2e002e;
+  color: white;
+  padding: 17px 25px;       /* 🔹 Menos espacio interno */
+  display: inline-block;
+  border-radius: 4px;
+  margin: -95px 0 2px -35px; /* 🔹 Sube un poco y la mueve hacia la izquierda */
+}
+
+
+.contenedor-productos {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+}
+
+.card-producto {
+  position: relative;
+  background-color:#d2d1d2;
+  border-radius: 10px;
+  width: 250px;
+  text-align: center;
+  padding: 1rem;
+  transition: transform 0.3s ease;
+}
+
+.card-producto:hover {
+  transform: scale(1.05);
+}
+
+.card-producto img {
+  width: 180px;
+  height: auto;
+  border-radius: 6px;
+  margin-bottom: 10px;
+}
+
+.info-producto p {
+  font-family: "Press Start 2P", system-ui;
+  font-size: 10px;
+  color: #000;
+  line-height: 1.4;
+}
+
+.precio {
+  font-weight: bold;
+  margin-top: 8px;
+}
+
+.estrellas {
+  color: gold;
+  margin-top: 5px;
+}
+
+.btn-carrito {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: #002e1f;
+  transition: transform 0.3s, color 0.3s;
+}
+
+.btn-carrito:hover {
+  transform: scale(1.2);
+}
+
+.btn-carrito:disabled {
+  cursor: default;
+  transform: none;
+}
+
+
