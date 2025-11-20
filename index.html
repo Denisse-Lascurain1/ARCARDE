@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/x-icon" href="img/juego2.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Arcade Shop</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+
+  <style>
+    /* ====== Contador del carrito ====== */
+    .cart {
+      position: relative;
+      font-size: 22px;
+      text-decoration: none;
+      color: white;
+    }
+    .cart-count {
+      position: absolute;
+      top: -8px;
+      right: -10px;
+      background-color: red;
+      color: white;
+      font-size: 12px;
+      font-family: "Press Start 2P", system-ui;
+      border-radius: 50%;
+      padding: 3px 6px;
+      min-width: 18px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ====== HEADER ====== -->
+  <header class="navbar">
+    <div class="menu-btn" id="menu-btn">☰</div>
+    <h1 class="logo">ARCADE SHOP</h1>
+    <div class="right-menu">
+      <a href="components/carrito.html" class="cart">
+        🛒<span id="cart-count" class="cart-count">0</span>
+      </a>
+      <a href="pages/login.html" class="link">Iniciar sesión</a>
+    </div>
+  </header>
+
+  <!-- ====== SIDEBAR ====== -->
+  <nav class="sidebar" id="sidebar">
+    <li><a href="components/mouse.html">Mouse</a></li>
+    <a href="components/teclados.html">Teclados</a>
+    <a href="components/sillas.html">Sillas</a>
+  </nav>
+
+  <!-- ====== SLIDER ====== -->
+  <div class="slider">
+    <div class="slider-slides">
+      <div class="slide active" style="background-image: url('img/img1.jpg');"></div>
+      <div class="slide" style="background-image: url('img/img2.jpg');"></div>
+      <div class="slide" style="background-image: url('img/img3.jpg');"></div>
+    </div>
+    <button class="prev-btn">‹</button>
+    <button class="next-btn">›</button>
+    <div class="slider-dots">
+      <span class="dot active" data-index="0"></span>
+      <span class="dot" data-index="1"></span>
+      <span class="dot" data-index="2"></span>
+    </div>
+  </div>
+
+  <!-- ====== ADMIN ====== -->
+  <a href="pages/admin.html" class="admin">ADMIN</a>
+
+  <script>
+    // ====== MENÚ LATERAL ======
+    const menuBtn = document.getElementById('menu-btn');
+    const sidebar = document.getElementById('sidebar');
+    menuBtn.addEventListener('click', () => {
+      sidebar.classList.toggle('active');
+    });
+
+    // ====== SLIDER ======
+    const slides = document.querySelectorAll('.slide');
+    const prevBtn = document.querySelector('.prev-btn');
+    const nextBtn = document.querySelector('.next-btn');
+    const dots = document.querySelectorAll('.dot');
+    let current = 0;
+    const max = slides.length;
+
+    function showSlide(index) {
+      slides.forEach((s, i) => s.classList.toggle('active', i === index));
+      dots.forEach((d, i) => d.classList.toggle('active', i === index));
+      current = index;
+    }
+
+    prevBtn.addEventListener('click', () => showSlide((current - 1 + max) % max));
+    nextBtn.addEventListener('click', () => showSlide((current + 1) % max));
+    dots.forEach(dot => dot.addEventListener('click', () => showSlide(parseInt(dot.dataset.index))));
+
+    let autoplayInterval = setInterval(() => showSlide((current + 1) % max), 5000);
+    const sliderEl = document.querySelector('.slider');
+    sliderEl.addEventListener('mouseenter', () => clearInterval(autoplayInterval));
+    sliderEl.addEventListener('mouseleave', () => autoplayInterval = setInterval(() => showSlide((current + 1) % max), 5000));
+
+    // ====== CARRITO ======
+    function actualizarContador() {
+      const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+      document.getElementById('cart-count').innerText = carrito.length;
+    }
+
+    window.addEventListener('DOMContentLoaded', actualizarContador);
+  </script>
+
+</body>
+</html>
+

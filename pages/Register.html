@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro - Usuario</title>
+    <link rel="stylesheet" href="../css/style_usuario.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="login-container">
+        <h2>Crear cuenta</h2>
+        
+        <form id="registerForm" class="login-form">
+            <div class="input-group">
+                <label for="nombre_usuario">Nombre de usuario</label>
+                <input type="text" id="nombre_usuario" name="nombre_usuario" placeholder="Ingresa tu usuario" required>
+            </div>
+
+            <div class="input-group">
+                <label for="email">Correo electrónico</label>
+                <input type="email" id="email" name="email" placeholder="Ingresa tu correo" required>
+            </div>
+
+            <div class="input-group">
+                <label for="password">Contraseña</label>
+                <input type="password" id="password" name="password" placeholder="Ingresa tu contraseña" required>
+            </div>
+
+                <button type="submit" class="btn btn-center">Registrarse</button>
+            <div class="divider">
+                <span>o</span>
+            </div>
+
+            <button type="button" class="btn-google" onclick="loginConGoogle()">
+                <img src="https://developers.google.com/identity/images/g-logo.png" alt="Google Logo">
+                Registrarse con Google
+            </button>
+
+            <p class="register-text">
+                ¿Ya tienes una cuenta? <a href="login.html">Inicia sesión aquí</a>
+            </p>
+            <p class="volver">
+                <a href="../index.html">← Volver al inicio</a>
+            </p>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById("registerForm").addEventListener("submit", async (e) => {
+            e.preventDefault();
+
+            const data = {
+                nombre_usuario: document.getElementById("nombre_usuario").value,
+                email: document.getElementById("email").value,
+                password: document.getElementById("password").value
+            };
+
+            try {
+                const response = await fetch("http://localhost:5000/register", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(data)
+                });
+
+                if (response.ok) {
+                    alert("Usuario registrado correctamente");
+                    window.location.href = "login.html";
+                } else {
+                    const err = await response.json();
+                    alert("Error: " + (err.message || "No se pudo registrar"));
+                }
+            } catch (error) {
+                console.error(error);
+                alert("Error de conexión con el servidor");
+            }
+        });
+
+        function loginConGoogle() {
+           /* window.location.href = "http://localhost:5000/auth/google";*/ /* hasta que se conectela api de google tkm orki*/
+        }
+    </script>
+</body>
+</html>
