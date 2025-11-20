@@ -1,7 +1,7 @@
 /* ===== Estilos generales ===== */
 body {
   margin: 0;
-   overflow-x: hidden;
+  overflow-x: hidden;
   font-family: "Press Start 2P", system-ui;
   color: white;
   background-color: black;
@@ -46,7 +46,7 @@ body {
 }
 
 .right-menu .cart {
-  font-size: 32px ; /* El tamaño es mucho más grande ahora */
+  font-size: 32px; /* El tamaño es mucho más grande ahora */
 }
 
 .right-menu a:hover {
@@ -56,7 +56,7 @@ body {
 /* ===== Menú lateral ===== */
 .sidebar {
   position: fixed;
-  top: 90px;
+  top: 100px;
   left: -200px;
   width: 200px;
   height: 100%;
@@ -213,7 +213,6 @@ body {
   margin: -95px 0 2px -35px; /* 🔹 Sube un poco y la mueve hacia la izquierda */
 }
 
-
 .contenedor-productos {
   display: flex;
   flex-wrap: wrap;
@@ -280,4 +279,224 @@ body {
   transform: none;
 }
 
+/* ====== ESTILOS DEL CONTADOR DEL CARRITO ====== */
+.cart {
+  position: relative;
+  font-size: 22px;
+  text-decoration: none;
+  color: white;
+}
 
+/* 🔸 Circulito rojo con el número */
+.cart-count {
+  position: absolute;
+  top: -8px;
+  right: -10px;
+  background-color: red;
+  color: white;
+  font-size: 12px;
+  font-family: "Press Start 2P", system-ui;
+  border-radius: 50%;
+  padding: 3px 6px;
+  min-width: 18px;
+  text-align: center;
+}
+
+/* ====== ESTILOS ESPECÍFICOS PARA PÁGINA DE CARRITO ====== */
+/* ====== GLOBAL ====== */
+body.carrito-page {
+  margin: 0;
+  font-family: "Press Start 2P", system-ui;
+  background-color: #cfcfcf;
+  color: black;
+}
+
+/* ====== HEADER ====== */
+header.carrito-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #210021;
+  color: white;
+  padding: 20px 30px;  
+  position: absolute;
+  width: 97%;
+  top: 0;
+  z-index: 10;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  font-size: 24px;
+}
+
+.menu-btn {
+  font-size: 28px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  margin-left: 20px;
+  font-size: 12px;
+}
+
+/* ====== SIDEBAR ====== */
+.sidebar.carrito-sidebar {
+  position: fixed;
+  top: 110px;
+  left: -220px;
+  width: 200px;
+  height: 100%;
+  background-color: rgba(10, 0, 10, 0.9);
+  display: flex;
+  flex-direction: column;
+  padding-top: 60px;
+  transition: left 0.3s ease;
+  z-index: 999;
+}
+
+.sidebar.carrito-sidebar.active {
+  left: 0;
+}
+
+.sidebar.carrito-sidebar a {
+  color: white;
+  text-decoration: none;
+  padding: 15px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  font-size: 10px;
+}
+
+.sidebar.carrito-sidebar a:hover {
+  background-color: #4b004b;
+}
+
+/* ====== CONTENIDO DEL CARRITO ====== */
+main {
+  padding: 20px;
+}
+
+.carrito-contenido {
+  padding: 20px;
+  font-family: "Press Start 2P", system-ui;
+  background-color: #dad5da;
+  color: rgb(0, 0, 0);
+  border-radius: 10px;
+  margin-top: 120px;
+}
+
+.item-carrito {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #968696;
+  margin-bottom: 15px;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.item-carrito img {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+.btn-eliminar {
+  background: none;
+  border: none;
+  color: red;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.total {
+  margin-top: 20px;
+  text-align: right;
+  font-size: 12px;
+}
+
+.comprar-btn {
+  display: block;
+  margin: 20px auto;
+  padding: 10px 30px;
+  background-color: #210021;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.comprar-btn:hover {
+  background-color: #4b004b;
+}
+
+/* Logo centrado */
+header h2 {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 0;
+  font-size: 24px; /* Mantienes el tamaño que quieras */
+}
+
+/* ====== ESTILOS ESPECÍFICOS PARA PÁGINA DE PAGO ====== */
+body.pago-page {
+  margin: 0;
+  font-family: "Press Start 2P", system-ui;
+  background-color: #cfcfcf;
+  color: black;
+  text-align: center;
+}
+
+.pago-header {
+  background-color: #210021;
+  color: white;
+  padding: 20px;
+  font-size: 20px;
+}
+
+.pago-container {
+  max-width: 500px;
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 30px;
+  margin: 80px auto;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+}
+
+.resumen {
+  margin-bottom: 30px;
+  text-align: left;
+}
+
+.resumen h3 {
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.resumen p {
+  font-size: 12px;
+  margin: 5px 0;
+}
+
+#paypal-button-container {
+  margin-top: 20px;
+}
+
+.volver {
+  margin-top: 25px;
+  display: block;
+  color: #210021;
+  text-decoration: none;
+  font-size: 12px;
+}
+
+.volver:hover {
+  text-decoration: underline;
+}

@@ -5,177 +5,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Carrito | Arcade Shop</title>
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-  <style>
-    /* ====== GLOBAL ====== */
-    body {
-      margin: 0;
-      font-family: "Press Start 2P", system-ui;
-      background-color: #cfcfcf;
-      color: black;
-    }
-
-    /* ====== HEADER ====== */
-    header {
-        display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background-color: #210021;
-  color: white;
-    padding: 20px 30px;  
-  position: absolute;
-  width: 97%;
-  top: 0;
-  z-index: 10;
-
-    }
-
-    .logo {
-      display: flex;
-      align-items: center;
-      font-size: 24px;
-    }
-
-    .menu-btn {
-      font-size: 28px;
-      cursor: pointer;
-      margin-right: 10px;
-    }
-
-    nav a {
-      color: white;
-      text-decoration: none;
-      margin-left: 20px;
-      font-size: 12px;
-    }
-
-    /* ====== SIDEBAR ====== */
-    .sidebar {
-      position: fixed;
-      top: 110px;
-      left: -220px;
-      width: 200px;
-      height: 100%;
-      background-color: rgba(10, 0, 10, 0.9);
-      display: flex;
-      flex-direction: column;
-      padding-top: 60px;
-      transition: left 0.3s ease;
-      z-index: 999;
-    }
-
-    .sidebar.active {
-      left: 0;
-    }
-
-    .sidebar a {
-      color: white;
-      text-decoration: none;
-      padding: 15px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-      font-size: 10px;
-    }
-
-    .sidebar a:hover {
-      background-color: #4b004b;
-    }
-
-    /* ====== CONTENIDO DEL CARRITO ====== */
-    main {
-      padding: 20px;
-    }
-
-    h2.categoria {
-  font-family: "Press Start 2P", system-ui;
-  font-size: 18px;
-  background-color: #2e002e;
-  color: white;
-  padding: 17px 25px;       /* 🔹 Menos espacio interno */
-  display: inline-block;
-  border-radius: 4px;
-  margin: -95px 0 2px -35px; /* 🔹 Sube un poco y la mueve hacia la izquierda */
-}
-
-
-    .carrito-contenido {
-      padding: 20px;
-  font-family: "Press Start 2P", system-ui;
-  background-color: #dad5da;
-  color: rgb(0, 0, 0);
-  border-radius: 10px;
-  margin-top: 120px;
-    }
-    .item-carrito {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background: #968696;
-      margin-bottom: 15px;
-      padding: 10px;
-      border-radius: 10px;
-    }
-
-    .item-carrito img {
-      width: 80px;
-      height: 80px;
-      object-fit: contain;
-      border-radius: 8px;
-    }
-
-    .btn-eliminar {
-      background: none;
-      border: none;
-      color: red;
-      font-size: 20px;
-      cursor: pointer;
-    }
-
-    .total {
-      margin-top: 20px;
-      text-align: right;
-      font-size: 12px;
-    }
-
-    .comprar-btn {
-      display: block;
-      margin: 20px auto;
-      padding: 10px 30px;
-      background-color: #210021;
-      color: white;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-      font-size: 12px;
-    }
-
-    .comprar-btn:hover {
-      background-color: #4b004b;
-    }
-    /* Logo centrado */
-header h2 {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  margin: 0;
-  font-size: 24px; /* Mantienes el tamaño que quieras */
-}
-
-  </style>
+  <link rel="stylesheet" href="../css/style.css">
 </head>
-<body>
+<body class="carrito-page">
   <!-- ====== HEADER ====== -->
-  <header>
+  <header class="carrito-header">
     <div class="logo">
       <span class="menu-btn" id="menu-btn">&#9776;</span>
       <h2>ARCADE SHOP</h2>
     </div>
     <nav>
-      
       <a href="../pages/login.html">Iniciar sesión</a>
     </nav>
   </header>
 
   <!-- ====== SIDEBAR ====== -->
-  <nav class="sidebar" id="sidebar">
+  <nav class="sidebar carrito-sidebar" id="sidebar">
     <a href="../index.html">Inicio</a>
     <a href="mouse.html">Mouse</a>
     <a href="teclados.html">Teclados</a>
@@ -239,18 +84,18 @@ header h2 {
     }
 
     comprarBtn.addEventListener('click', () => {
-  let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-  if (carrito.length === 0) {
-    alert("Tu carrito está vacío 🛒");
-    return;
-  }
+      let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+      if (carrito.length === 0) {
+        alert("Tu carrito está vacío 🛒");
+        return;
+      }
 
-  // Guardar el carrito en localStorage (ya lo tienes)
-  localStorage.setItem('carrito', JSON.stringify(carrito));
+      // Guardar el carrito en localStorage (ya lo tienes)
+      localStorage.setItem('carrito', JSON.stringify(carrito));
 
-  // Redirigir a la página de pago
-  window.location.href = "pago.html";
-});
+      // Redirigir a la página de pago
+      window.location.href = "pago.html";
+    });
 
     window.addEventListener('DOMContentLoaded', mostrarCarrito);
   </script>
